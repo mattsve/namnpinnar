@@ -6,11 +6,12 @@ seds+="s/Å/A/g;"
 seds+="s/Ä/A/g;"
 seds+="s/Ö/O/g;"
 
+[[ -d stl ]] || mkdir stl
 while IFS= read -r line ; do
-  mkdir -p stl
-  stl="stl/${line}.stl"
-  if [ ! -f $stl ]; then
-    txt=$(echo "$line" | sed ${seds})
-    npx jscad template.js --text "$txt" -o "$stl" 
+  trimmed=$(echo "$line" | sed -r "s/[[:blank:]]+$//g;")
+  stl="stl/${trimmed}.stl"
+  if [ ! -f "$stl" ]; then
+    txt=$(echo "$trimmed" | sed ${seds})
+    npx jscad template.js --text "${txt}" -o "$stl" 
   fi
 done < names.txt

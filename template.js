@@ -35,7 +35,7 @@ function createText(txt) {
     lineSegments.push(hullChain(corners));
   });
   const text2d = union(lineSegments);
-  return extrudeLinear({ height: 2.3 }, text2d);
+  return extrudeLinear({ height: 2.2 }, text2d);
 }
 
 module.exports = { main }
