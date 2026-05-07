@@ -17,6 +17,7 @@ function main(params) {
 }
 
 function stick(txt) {
+  txt = txt.replace(/ü/g, 'u');
   var text = translate([3, -74, 0], rotate([0, 0, Math.PI / 2], createText(txt)));
   var body = translate([0, 0, 1], cuboid({size: [14, 151, 2]}));
   var point = translate([0, 75.5, 0], extrudeLinear({height: 2}, polygon({ points: [[-7, 0], [7, 0], [1, 14], [-1, 14]] })));
